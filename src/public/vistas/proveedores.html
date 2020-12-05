@@ -1,0 +1,103 @@
+<div id="divListado">
+    <div class="row">
+        <h4 class="title">Listado Proveedores</h4>
+
+        <button id="btnAgregarProveedor" class="btn btn-primary ml-2 mb-2" onclick="agregarProveedor()">Agregar</button>
+    </div>
+    
+    <div id="divFormulario">
+        <h4 class="title">Registrar Proveedor</h4>
+        <form action="" id="formularioRegistroProveedor" autocomplete="off">
+            <div class="row">
+                <div class="form-group col-md-4">
+                   <label for="numeroDocumentoProveedor" class="form-control-label">Numero Documento: </label>
+                   <input type="hidden" id="idProveedor">
+                   <input type="text" id="numeroDocumentoProveedor" class="form-control" placeholder="Numero de Documento">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="nombreProveedor" class="form-control-label">Nombre: </label>
+                    <input type="text" id="nombreProveedor" class="form-control" placeholder="Nombre Proveedor">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="telefonoProveedor" class="form-control-label">Telefono: </label>
+                    <input type="text" id="telefonoProveedor" class="form-control" placeholder="Telefono Proveedor">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="emailProveedor" class="form-control-labe">Email: </label>
+                    <input type="email" id="emailProveedor" class="form-control" placeholder="Email Proveedor">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="direccionProveedor" class="form-control-label">Direccion: </label>
+                    <input type="text" id="direccionProveedor" class="form-control" placeholder="Direccion Proveedor">
+                </div>
+            </div>       
+            
+            <div class="row">
+                <div class="form-group alertas-formulario col-md-8 text-center">
+                    
+                </div>
+            </div>
+            
+            <button type="button" class="btn btn-dark mb-2" onclick="cancelarRegistroProveedor()">Cancelar</button>
+            <input type="submit" value="Registar Proveedor" id="btnRegistrarProveedor" class="btn btn-success mb-2">
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="input-group">
+                <input type="text" id="buscarProveedor" class="form-control col-md-10" placeholder="Buscar..." title="Buscar una proveedor por nombre">
+                <button class="btn btn-secondary col-md-2" onclick="buscarProveedor()">Buscar</button>
+            </div>
+        </div>
+    </div>
+    <table id="listadoProveedores" class="table table-bordered table-collapse table-hover">
+        <thead>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Telefono</th>
+            <th>Email</th>
+            <th>Opciones</th>
+        </thead>
+
+        <tbody>
+            <tr>
+                <!-- <td>4</td>
+                <td>Michael Alvarado</td>
+                <td>04162944523</td>
+                <td>alejhandro.alvarado2015@gmail.com</td>
+                <td>
+                    <button type="button" class="btn btn-warning btn-sm">Editar</button>
+                    <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                </td> -->
+            </tr>    
+        </tbody>
+    </table>
+
+    <script>
+        if($('#listadoProveedores').length > 0){
+            $('#divFormulario').hide()
+            datosProveedores()
+
+            $('#formularioRegistroProveedor').on('submit', function(e){
+                e.preventDefault()
+        
+                if($('#idProveedor').val() === ''){
+                    registrarProveedor() 
+                }else{
+                    editarProveedor()
+                } 
+            })
+
+            $('#buscarProveedor').change(function(){
+                if($(this).val() === ''){
+                    datosProveedores()
+                }
+            })
+        }
+    </script>
+</div>

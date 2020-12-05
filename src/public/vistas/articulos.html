@@ -1,0 +1,115 @@
+<div id="divListado">
+    <div class="row">
+        <h4 class="title">Listado Articulos</h4>
+        <button id="btnAgregarArticulo" class="btn btn-primary ml-2 mb-2" onclick="agregarArticulo()">Agregar</button>
+    </div>
+    
+    <div id="divFormulario">
+        <h4 class="title">Registrar Articulo</h4>
+        <form action="" id="formularioRegistroArticulo" autocomplete="off">
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="categoriaArticulo" class="form-control-labe">Categoria: </label>
+                    <select id="categoriaArticulo" class="custom-select">
+                        
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="nombreArticulo" class="form-control-labe">Nombre: </label>
+                    <input type="hidden" id="idArticulo">
+                    <input type="text" id="nombreArticulo" class="form-control" placeholder="Nombre Articulo">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="codigoArticulo" class="form-control-labe">Codigo: </label>
+                    <input type="text" id="codigoArticulo" class="form-control" placeholder="Codigo Articulo">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="pventaArticulo" class="form-control-label">Precio Venta:</label>
+                    <input type="number" id="pventaArticulo" class="form-control" placeholder="Precio Venta" maxlength="9">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="stockArticulo" class="form-control-label">Stock:</label>
+                    <input type="number" id="stockArticulo" class="form-control" placeholder="Stock Articulo" maxlength="9">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="descripcionArticulo" class="form-control-label">Descripcion:</label>
+                    <textarea  id="descripcionArticulo" class="form-control" placeholder="Descripcion..." cols="30" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group alertas-formulario col-md-8 text-center">
+                    
+                </div>
+            </div>
+            
+            <button type="button" class="btn btn-dark mb-2" onclick="cancelarRegistroArticulo()">Cancelar</button>
+            <input type="submit" value="Registar Articulo" id="btnRegistrarArticulo" class="btn btn-success mb-2">
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="input-group">
+                <input type="text" id="buscarArticulo" class="form-control col-md-10" placeholder="Buscar..." title="Buscar un articulo por código o nombre">
+                <button class="btn btn-secondary col-md-2" onclick="buscarArticulo()">Buscar</button>
+            </div>
+        </div>
+    </div>
+    <table id="listadoArticulos" class="table table-bordered table-collapse table-hover">
+        <thead>
+            <th>Id</th>
+            <th>Categoria</th>
+            <th>Nombre</th>
+            <th>Codigo</th>
+            <th>Stock</th>
+            <th>Estado</th>
+            <th>Opciones</th>
+        </thead>
+
+        <tbody>
+            <!-- <tr>
+                <td>10</td>
+                <td>Limpieza</td>
+                <td>cloro</td>
+                <td>1006</td>
+                <td>106</td>
+                <td>Activo</td>
+                <td>
+                    <button type="button" class="btn btn-warning btn-sm">Editar</button>
+                    <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                </td>
+            </tr>     -->
+        </tbody>
+    </table>
+    
+    <script>
+        if($('#listadoArticulos').length > 0){
+            $('#divFormulario').hide()
+            datosSelectCategorias()
+            datosArticulos()
+
+            $('#formularioRegistroArticulo').on('submit', function(e){
+                e.preventDefault()
+        
+                if($('#idArticulo').val() === ''){
+                    registrarArticulo() 
+                }else{
+                    editarArticulo()
+                } 
+            })
+
+            $('#buscarArticulo').change(function(){
+                if($(this).val() === ''){
+                    datosArticulos()
+                }
+            })
+        }
+    </script>
+</div>

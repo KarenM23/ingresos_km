@@ -1,0 +1,85 @@
+<div id="divListado">
+    <div class="row">
+        <h4 class="title">Listado Categorias</h4>
+
+        <button id="btnAgregarCategoria" class="btn btn-primary ml-2 mb-2" onclick="agregarCategoria()">Agregar</button>
+    </div>
+    
+    <div id="divFormulario">
+        <h4 class="title">Registrar Categoria</h4>
+        <form action="" id="formularioRegistroCategoria" autocomplete="off">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="nombreCategoria" class="form-control-label">Nombre:</label>
+                    <input type="hidden" id="idCategoria">
+                    <input type="text" id="nombreCategoria" class="form-control" placeholder="Nombre Categoria">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="descripcionCategoria" class="form-control-label">Descripcion:</label>
+                    <textarea  id="descripcionCategoria" class="form-control" placeholder="Descripcion..." cols="30" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group alertas-formulario col-md-8 text-center">
+                    
+                </div>
+            </div>
+            
+            <button type="button" onclick="cancelarRegistroCategoria()" class="btn btn-dark mb-2">Cancelar</button>
+            <input type="submit" value="Registrar Categoria" id="btnRegistrarCategoria" class="btn btn-success mb-2">
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="input-group">
+                <input type="text" id="buscarCategoria" class="form-control col-md-10" placeholder="Buscar..." title="Buscar una categoria por nombre">
+                <button class="btn btn-secondary col-md-2" onclick="buscarCategoria()">Buscar</button>
+            </div>
+            <span class="alerta-buscador text-danger"></span>
+        </div>
+    </div>
+    <table id="listadoCategorias" class="table table-bordered table-collapse table-hover">
+        <thead>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Opciones</th>
+        </thead>
+
+        <tbody>
+            <!-- <tr>
+                <td>10</td>
+                <td>Limpieza</td>
+                <td>Son todos los productos de Limpieza del inventario.</td>
+                <td>
+                    <button type="button" class="btn btn-warning btn-sm">Editar</button>
+                    <button type="button" class="btn btn-danger btn-sm">Eliminar</button>
+                </td>
+            </tr>     -->
+        </tbody>
+    </table>
+
+    <script>
+        if($('#listadoCategorias').length > 0){
+            $('#divFormulario').hide()
+            datosCategorias()
+
+            $('#formularioRegistroCategoria').on('submit', function(e){
+                e.preventDefault()
+
+                if($('#idCategoria').val() === ''){
+                    registrarCategoria() 
+                }else{
+                    editarCategoria()
+                } 
+            })
+
+            $('#buscarCategoria').change(function(){
+                if($(this).val() === ''){
+                    datosCategorias()
+                }
+            })
+        }
+    </script>
+</div>

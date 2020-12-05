@@ -1,0 +1,189 @@
+<div id="divListado">
+    <div class="row">
+        <h4 class="title">Listado Ingresos</h4>
+
+        <button id="btnAgregarIngreso" class="btn btn-primary ml-2 mb-2" onclick="agregarIngreso()">Agregar</button>
+    </div>
+    
+    <div id="divFormulario">
+        <h4 class="title">Registrar Ingreso</h4>
+        <form action="" id="formularioRegistroIngreso" autocomplete="off">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="proveedor" class="form-control-label">Proveedor:</label>
+                    <select id="proveedor" class="custom-select">
+                        <!-- <option value="0"> Proveedor </option>
+                        <option value="1"> Farmatodo </option> -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="tipoComprobante" class="form-control-labe">Tipo Comprobante: </label>
+                    <select id="tipoComprobante" class="custom-select">
+                        <option value="Boleta">Boleta</option>
+                        <option value="Factura">Factura</option>
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="serieComprobante" class="form-control-label">Serie: </label>
+                    <input type="text" id="serieComprobante" class="form-control" placeholder="Serie comprobante">
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="numComprobante" class="form-control-label">Numero: </label>
+                    <input type="text" id="numComprobante" class="form-control" placeholder="Numero comprobante">
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="producto" class="form-control-label">Producto: </label>
+                    <select id="productos" class="custom-select">
+                        <!-- <option value="0">Productos</option>
+                        <option value="1">Cloro Limpia todo en uno</option> -->
+                    </select>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="cantidad" class="form-control-label">Cantidad:</label>
+                    <input type="number" id="cantidad" class="form-control" size="5" maxlength="5">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="precio" class="form-control-label">Precio: </label>
+                    <input type="number" id="precio" class="form-control" size="9" maxlength="9">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <button type="button" id="btnAgregarProducto" class="btn btn-secondary" onclick="agregarProducto()">Añadir</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <table id="listadoProductos" class="table table-bordered table-hover">
+                    <thead>
+                        <th>Opciones</th>
+                        <th>Articulo</th>
+                        <th>Cantidad</th>
+                        <th>Precio Compra</th>
+                        <th>SubTotal</th>
+                    </thead>
+                    <tbody>
+                        <!-- <tr>
+                            <td>
+                                <button class="btn btn-warning btn-sm"><span class="fa fa-times"></span></button>
+                            </td>
+                            <td>
+                                <input type="hidden" class="producto">
+                                1006 Cloro Brillante Limpia todo
+                            </td>
+                            <td>
+                                <input type="hidden" class="cantidad">
+                                20
+                            </td>
+                            <td>
+                                <input type="hidden" class="precio">
+                                3
+                            </td>
+                            <td class="subTotal">62.00</td>
+                        </tr>
+                         -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                Impuesto (16%)
+                                <input type="hidden" id="impuesto">
+                            </th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td id="datoImpuesto">
+                                Bs/0.00
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Total
+                                <input type="hidden" id="total">
+                            </th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td id="datoTotal">
+                                Bs/0.00
+                            </td>
+                        </tr>
+                        
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="form-group alertas-formulario col-md-8 text-center">
+                    
+                </div>
+            </div>
+            <button type="button" class="btn btn-dark mb-2" onclick="cancelarRegistroIngreso()">Cancelar</button>
+            <input type="submit" value="Registar Ingreso" id="btnRegistrarIngreso" class="btn btn-success mb-2">
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <div class="input-group">
+                <input type="text" id="buscarIngreso" class="form-control col-md-10" placeholder="Buscar..." title="Buscar una ingreso por nombre">
+                <button class="btn btn-secondary col-md-2" onclick="buscarIngreso()">Buscar</button>
+            </div>
+        </div>
+    </div>
+    <table id="listadoIngresos" class="table table-bordered table-collapse table-hover">
+        <thead>
+            <th>Fecha</th>
+            <th>Proveedor</th>
+            <th>Comprobante</th>
+            <th>Impuesto</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th>Opciones</th>
+        </thead>
+
+        <tbody>
+            <!-- <tr>
+                <td>27/09/2020 04:59:18</td>
+                <td>Farmatodo</td>
+                <td>Boleta: 1: 1</td>
+                <td>18.00</td>
+                <td>100.00</td>
+                <td>A</td>
+                <td>
+                    <button type="button" class="btn btn-info btn-sm">Detalles</button>
+                    <button type="button" class="btn btn-danger btn-sm">Anular Ingreso</button>
+                </td>
+            </tr>     -->
+        </tbody>
+    </table>
+
+    <script>
+        if($('#listadoIngresos').length > 0){
+            $('#divFormulario').hide()
+            datosIngresos()
+            listaProveedores()
+            listaProductos()
+
+            $('#formularioRegistroIngreso').on('submit', function(e){
+                e.preventDefault()
+                registrarIngreso() 
+            })
+
+            $('#buscarIngreso').change(function(){
+                if($(this).val() === ''){
+                    datosIngresos()
+                }
+            })
+        }
+    </script>
+</div>
