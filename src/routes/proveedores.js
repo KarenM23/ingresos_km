@@ -36,7 +36,7 @@ ruta.post('/registrar', async (req, res) => {
         }).then(() => {
             res.json({status: true})
         }).catch(err => {
-            res.json({status: false})
+            res.json({status: false, error: err.message})
         })
     })
 })

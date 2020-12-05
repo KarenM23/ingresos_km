@@ -92,6 +92,7 @@ function registrarProveedor(){
                     limpiarFormularioProveedor()
                     datosProveedores()
                 }else{
+                    console.log(respuesta.message)
                     $('.alertas').html('<label class="text-danger"> <i class="fa fa-times"></i> Proveedor no se pudo registrar !!</label>')
                 }
             }
@@ -227,7 +228,6 @@ function buscarProveedor(){
             dataType: 'json',
     
             success: function(proveedores){
-                console.log(proveedores)
                 $('.alerta-buscador').html('')
                 listarProveedores(proveedores)
             }
